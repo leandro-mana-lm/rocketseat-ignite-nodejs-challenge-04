@@ -1,0 +1,304 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "User API Documentation",
+    "description": "This is an User API.",
+    "version": "1.0.0",
+    "contact": {
+      "email": "test@test.tst"
+    }
+  },
+  "paths": {
+    "/users": {
+      "post": {
+        "tags": ["User"],
+        "summary": "Create a new User.",
+        "description": "Create a new User.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": { "type": "string" },
+                  "email": { "type": "string" }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "User created.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "ID."
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "Name."
+                    },
+                    "admin": {
+                      "type": "boolean",
+                      "description": "Admin."
+                    },
+                    "email": {
+                      "type": "string",
+                      "description": "Email."
+                    },
+                    "created_at": {
+                      "type": "string",
+                      "description": "Create Date."
+                    },
+                    "updated_at": {
+                      "type": "string",
+                      "description": "Update Date."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Email already being used.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Error Message."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": ["User"],
+        "summary": "List all Users.",
+        "description": "List all Users.",
+        "parameters": [
+          {
+            "in": "header",
+            "name": "user_id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "ID."
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "Name."
+                    },
+                    "admin": {
+                      "type": "boolean",
+                      "description": "Admin."
+                    },
+                    "email": {
+                      "type": "string",
+                      "description": "Email."
+                    },
+                    "created_at": {
+                      "type": "string",
+                      "description": "Create Date."
+                    },
+                    "updated_at": {
+                      "type": "string",
+                      "description": "Update Date."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Email already being used.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Error Message."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/{user_id}/admin": {
+      "patch": {
+        "tags": ["User"],
+        "summary": "Turn User Admin.",
+        "description": "Turn User Admin.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "user_id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "User ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "ID."
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "Name."
+                    },
+                    "admin": {
+                      "type": "boolean",
+                      "description": "Admin."
+                    },
+                    "email": {
+                      "type": "string",
+                      "description": "Email."
+                    },
+                    "created_at": {
+                      "type": "string",
+                      "description": "Create Date."
+                    },
+                    "updated_at": {
+                      "type": "string",
+                      "description": "Update Date."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Error Message."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/{user_id}": {
+      "get": {
+        "tags": ["User"],
+        "summary": "Search for User by ID.",
+        "description": "Search for User by ID.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "user_id",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            },
+            "description": "User ID."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "ID."
+                    },
+                    "name": {
+                      "type": "string",
+                      "description": "Name."
+                    },
+                    "admin": {
+                      "type": "boolean",
+                      "description": "Admin."
+                    },
+                    "email": {
+                      "type": "string",
+                      "description": "Email."
+                    },
+                    "created_at": {
+                      "type": "string",
+                      "description": "Create Date."
+                    },
+                    "updated_at": {
+                      "type": "string",
+                      "description": "Update Date."
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "User not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "description": "Error Message."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
